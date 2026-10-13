@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СРС — Анкета начинающего веб-разработчика</title>
+  <!-- CSS отвечает только за оформление страницы. -->
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f1f5f4; color: #203430; font: 17px/1.5 Arial, sans-serif; }
+    main { max-width: 800px; margin: 36px auto; padding: 32px; background: white; border-radius: 16px; }
+    h1 { margin: 10px 0 12px; font-size: 32px; line-height: 1.2; }
+    .caption { color: #426d61; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
+    .intro, .hint { color: #536761; }
+    .hint { margin: 8px 0; font-size: 14px; }
+    fieldset { min-width: 0; margin: 24px 0; padding: 18px; border: 1px solid #d2dfda; border-radius: 8px; }
+    legend { padding: 0 6px; font-weight: bold; }
+    input, select, textarea, button { font: inherit; }
+    input[type="text"], input[type="number"], select, textarea { width: 100%; padding: 10px; border: 1px solid #899e96; border-radius: 5px; background: white; color: #203430; }
+    textarea { resize: vertical; }
+    .option { display: block; margin: 9px 0; cursor: pointer; }
+    input[type="radio"], input[type="checkbox"] { width: 18px; height: 18px; margin: 0 8px 0 0; vertical-align: middle; accent-color: #21634f; }
+    :focus-visible { outline: 3px solid #b16c22; outline-offset: 3px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    button { padding: 12px 20px; border: 1px solid #21634f; border-radius: 6px; background: #21634f; color: white; cursor: pointer; }
+    button[type="reset"] { background: white; color: #21634f; }
+    button:hover { filter: brightness(.92); }
+    #result { margin-top: 28px; padding: 20px; background: #edf6f1; border-radius: 8px; }
+    #result h2 { margin-top: 0; font-size: 24px; }
+    #answers { padding-left: 24px; }
+    #answers li { margin-bottom: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+    footer { margin-top: 26px; color: #536761; font-size: 14px; }
+    @media (max-width: 600px) { main { margin: 0; padding: 20px; border-radius: 0; } h1 { font-size: 28px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="caption">САМОСТОЯТЕЛЬНАЯ РАБОТА · HTML-ФОРМЫ</span>
+    <h1>Анкета начинающего веб-разработчика</h1>
+    <p class="intro">Ответьте на 10 вопросов о своём опыте и интересах. Все вопросы обязательны. Вопросы с несколькими вариантами отмечены отдельно.</p>
+  </header>
+
+  <!-- form объединяет все вопросы и кнопки. -->
+  <form id="survey">
+    <!-- 1 и 2. Однострочные текстовые поля. -->
+    <fieldset>
+      <legend>1. Как вас зовут?</legend>
+      <label for="studentName" class="hint">Ваше имя</label>
+      <input type="text" id="studentName" name="studentName" maxlength="80" required>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. В какой учебной группе вы учитесь?</legend>
+      <label for="studyGroup" class="hint">Название группы</label>
+      <input type="text" id="studyGroup" name="studyGroup" placeholder="Например: РПО-24-2" maxlength="40" required>
+    </fieldset>
+
+    <!-- 3. radio: одинаковое name позволяет выбрать только один ответ. -->
+    <fieldset>
+      <legend>3. Какой у вас опыт создания веб-страниц?</legend>
+      <label class="option"><input type="radio" name="experience" value="Начинаю с нуля" required>Начинаю с нуля</label>
+      <label class="option"><input type="radio" name="experience" value="Создавал простые страницы">Создавал простые страницы</label>
+      <label class="option"><input type="radio" name="experience" value="Создавал небольшие сайты">Создавал небольшие сайты</label>
+    </fieldset>
+
+    <!-- 4. checkbox: можно отметить несколько ответов. -->
+    <fieldset>
+      <legend>4. Какие навыки вы сейчас изучаете?</legend>
+      <p class="hint">Выберите один или несколько вариантов.</p>
+      <label class="option"><input type="checkbox" name="skills" value="HTML">HTML</label>
+      <label class="option"><input type="checkbox" name="skills" value="CSS">CSS</label>
+      <label class="option"><input type="checkbox" name="skills" value="JavaScript">JavaScript</label>
+      <label class="option"><input type="checkbox" name="skills" value="Дизайн интерфейсов">Дизайн интерфейсов</label>
+    </fieldset>
+
+    <!-- 5 и 6. select и option создают выпадающий список. -->
+    <fieldset>
+      <legend>5. В каком редакторе вы пишете HTML-код?</legend>
+      <label for="editor" class="hint">Выберите редактор</label>
+      <select id="editor" name="editor" required>
+        <option value="">Выберите вариант</option>
+        <option>Блокнот</option>
+        <option>Visual Studio Code</option>
+        <option>Notepad++</option>
+        <option>Другой редактор</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>6. В каком браузере вы проверяете страницу?</legend>
+      <label for="browser" class="hint">Выберите браузер</label>
+      <select id="browser" name="browser" required>
+        <option value="">Выберите вариант</option>
+        <option>Google Chrome</option>
+        <option>Microsoft Edge</option>
+        <option>Mozilla Firefox</option>
+        <option>Opera</option>
+        <option>Другой браузер</option>
+      </select>
+    </fieldset>
+
+    <!-- 7. number — числовое поле. min и max задают границы. -->
+    <fieldset>
+      <legend>7. Сколько часов в неделю вы готовы уделять практике?</legend>
+      <label for="hours" class="hint">Целое число от 1 до 40</label>
+      <input type="number" id="hours" name="hours" min="1" max="40" step="1" required>
+    </fieldset>
+
+    <fieldset>
+      <legend>8. Какой формат обучения вам удобнее?</legend>
+      <label class="option"><input type="radio" name="learning" value="Видеоуроки" required>Видеоуроки</label>
+      <label class="option"><input type="radio" name="learning" value="Текстовые инструкции">Текстовые инструкции</label>
+      <label class="option"><input type="radio" name="learning" value="Практические задания">Практические задания</label>
+    </fieldset>
+
+    <!-- 9. textarea — поле для развёрнутого ответа. -->
+    <fieldset>
+      <legend>9. Какой сайт вы хотели бы создать?</legend>
+      <label for="project" class="hint">Кратко опишите идею и назначение сайта</label>
+      <textarea id="project" name="project" rows="4" maxlength="1000" required></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>10. Какую тему веб-разработки вы хотите изучить следующей?</legend>
+      <label for="nextTopic" class="hint">Напишите название темы</label>
+      <input type="text" id="nextTopic" name="nextTopic" maxlength="150" required>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit">Показать мои ответы</button>
+      <button type="reset">Очистить форму</button>
+    </div>
+  </form>
+
+  <section id="result" hidden aria-labelledby="resultTitle" tabindex="-1">
+    <h2 id="resultTitle">Ваши ответы</h2>
+    <ol id="answers"></ol>
+  </section>
+  <footer>Учебный опрос. Ответы отображаются только на этой странице, не отправляются на сервер и не сохраняются после её закрытия или обновления.</footer>
+</main>
+
+<!-- JavaScript добавляет показ ответов; сами поля создаются в HTML выше. -->
+<script>
+  const form = document.getElementById('survey');
+  const result = document.getElementById('result');
+  const answers = document.getElementById('answers');
+  const skillBoxes = form.querySelectorAll('input[name="skills"]');
+
+  // Для checkbox проверяем, что отмечен хотя бы один вариант.
+  function checkSkills() {
+    const selected = form.querySelector('input[name="skills"]:checked');
+    skillBoxes[0].setCustomValidity(selected ? '' : 'Выберите хотя бы один навык.');
+  }
+  skillBoxes.forEach(box => box.addEventListener('change', checkSkills));
+  checkSkills();
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault(); // Показываем ответы без перехода на другую страницу.
+    const data = new FormData(form);
+    const rows = [
+      ['Имя', data.get('studentName')],
+      ['Учебная группа', data.get('studyGroup')],
+      ['Опыт', data.get('experience')],
+      ['Изучаемые навыки', data.getAll('skills').join(', ')],
+      ['Редактор', data.get('editor')],
+      ['Браузер', data.get('browser')],
+      ['Часов практики в неделю', data.get('hours')],
+      ['Формат обучения', data.get('learning')],
+      ['Идея сайта', data.get('project')],
+      ['Следующая тема', data.get('nextTopic')]
+    ];
+
+    answers.replaceChildren();
+    rows.forEach(function (row) {
+      const item = document.createElement('li');
+      item.textContent = row[0] + ': ' + row[1];
+      answers.appendChild(item);
+    });
+    result.hidden = false;
+    result.focus();
+  });
+
+  form.addEventListener('reset', function () {
+    result.hidden = true;
+    answers.replaceChildren();
+    // После reset флажки снова пустые, поэтому возвращаем проверку.
+    skillBoxes[0].setCustomValidity('Выберите хотя бы один навык.');
+  });
+</script>
+</body>
+</html>
